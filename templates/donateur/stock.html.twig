@@ -1,0 +1,44 @@
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+</head>
+<div class="container mt-4">
+    <h2>Stock de sang</h2>
+    <div class="row">
+        {% for i in stock %}
+            <div class="col-md-4 mb-3">
+                <div class="card border-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.groupeSanguin }}</h5>
+                        <p><strong>Niveau actuel:</strong> {{ i.niveauActuel }}</p>
+                        <p><strong>Niveau d'alerte:</strong> {{ i.niveauAlerte }}</p>
+                        {% set color = 'bg-success' %}
+                        {% set width = 25 %}
+
+                        {% if i.niveauAlerte == 'Alerte' %}
+                            {% set color = 'bg-info' %}
+                            {% set width = 50 %}
+                        {% elseif i.niveauAlerte == 'Critique' %}
+                            {% set color = 'bg-danger' %}
+                            {% set width = 100 %}
+                        {% endif %}
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped {{ color }}" role="progressbar"
+                                 style="width: {{ width }}%" aria-valuenow="{{ width }}" aria-valuemin="0"
+                                 aria-valuemax="100">
+                                {{ width }}%
+                            </div>
+                        </div>
+
+                        <p><strong>Dernière mise à jour:</strong> 
+                           {{ i.dernierMiseAJour ? i.dernierMiseAJour|date('d/m/Y') : 'Non renseigné' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>Aucun stock disponible.</p>
+        {% endfor %}
+    </div>
+</div>

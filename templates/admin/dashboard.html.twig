@@ -1,0 +1,53 @@
+{% extends 'admin/admin_dashboard.html.twig' %}
+
+{% block content %}
+<div class="stats-grid">
+    <div class="stat-card" style="border-left-color:#dc2626;">
+        <div class="stat-card-content">
+            <div>
+                <p class="stat-title">Total Donateurs</p>
+                <h3 class="stat-value">{{ stats.totalDonateurs }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-card" style="border-left-color:#f59e0b;">
+        <div class="stat-card-content">
+            <div>
+                <p class="stat-title">RDV Effectués</p>
+                <h3 class="stat-value">{{ stats.rdvEffectues }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-card" style="border-left-color:#dc2626;">
+        <div class="stat-card-content">
+            <div>
+                <p class="stat-title">Stock Critique</p>
+                <h3 class="stat-value">{{ stats.stockCritique }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-card" style="border-left-color:#10b981;">
+        <div class="stat-card-content">
+            <div>
+                <p class="stat-title">Total Collectes</p>
+                <h3 class="stat-value">{{ stats.totalCollectes }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Stocks Critiques</h3>
+<ul class="list-group">
+    {% for stock in stocksCritiques %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Groupe: {{ stock.groupeSanguin }}
+            <span class="badge bg-danger rounded-pill">{{ stock.niveauActuel }} L</span>
+        </li>
+    {% else %}
+        <li class="list-group-item">Aucun stock critique</li>
+    {% endfor %}
+</ul>
+{% endblock %}

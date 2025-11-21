@@ -1,0 +1,43 @@
+
+
+<h5>HELLO Donateur {{user.prenom}} !</h5>
+<h5>HELLO Donateur {{user.id}} !</h5>
+<form action="{{ path('app_logout') }}" method ="post">
+        <button type="submit" href="">LogOut</button>
+</form>
+<h2>Mes Rendez-Vous</h2>
+
+{% if ListRendezVous is empty %}
+    <p>Aucun rendez-vous trouvé.</p>
+{% else %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date Rendez Vous</th>
+                <th>Statut</th>
+                <th>Lieu</th>
+                <th>Nom collecte</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rdv in ListRendezVous %}
+                <tr>
+                        <td>Date Rendez Vous {{ rdv.dateHeureDebut ? rdv.dateHeureDebut|date('d/m/Y H:i') : '' }}</td>
+                        <td>Statut {{ rdv.statut }}</td>
+                        <td>Lieu {{ rdv.collecte.lieu.nomLieu }}</td>
+                        <td>Nom collecte {{ rdv.collecte.nom }}</td>
+<td>
+                        {% if rdv.statut != 'Annulé' and rdv.statut != 'Annulé' %}
+                            <a href="{{ path('annuler_RendezVous', {'id': rdv.id}) }}" 
+                               onclick="return confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')">
+                                Annuler
+                            </a>
+                        {% else %}
+                            <span style="color: #6c757d;">Déjà annulé</span>
+                        {% endif %}
+                    </td>                       
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

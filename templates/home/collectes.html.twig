@@ -1,0 +1,115 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('theme/css/collectes.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+{% endblock %}
+
+{% block body %}
+<section id="articles" class="py-5 bg-light section-margin">
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-danger">
+                <i class="bi bi-droplet-fill"></i> Blood Collect
+            </h2>
+
+            <div class="button-area">
+                <div class="swiper-button-prev btn btn-outline-dark rounded-circle shadow-sm"></div>
+                <div class="swiper-button-next btn btn-outline-dark rounded-circle shadow-sm"></div>
+            </div>
+        </div>
+
+        <!-- FORMULAIRE DE FILTRAGE -->
+        <div class="card p-4 mb-4 shadow-lg border-0 filter-box">
+            <h5 class="fw-bold mb-3">
+                <i class="bi bi-funnel-fill text-danger"></i> Filtrer les collectes
+            </h5>
+
+            {{ form_start(filterForm) }}
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+                    {{ form_row(filterForm.lieu, {
+                        label: 'Ville',
+                        attr: { class: 'form-select custom-select' }
+                    }) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(filterForm.dateDebut, {
+                        label: 'À partir du',
+                        attr: { class: 'form-control' }
+                    }) }}
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-danger w-100 shadow-sm">
+                        <i class="bi bi-search"></i> Filtrer
+                    </button>
+                </div>
+
+            </div>
+
+            {{ form_end(filterForm) }}
+        </div>
+
+        <!-- LISTE DES COLLECTES -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+
+                {% for collecte in collectes_list %}
+                    <div class="swiper-slide">
+
+                        <div class="card collect-card shadow-lg border-0">
+
+                            <div class="card-body">
+
+                                <h4 class="card-title text-danger fw-bold text-center">
+                                    {{ collecte.nom }}
+                                </h4>
+
+                                <hr>
+
+                                <p><i class="bi bi-calendar-event text-danger"></i>
+                                    <strong>Début :</strong> {{ collecte.dateDebut|date('d/m/Y') }}
+                                </p>
+
+                                <p><i class="bi bi-calendar-check text-danger"></i>
+                                    <strong>Fin :</strong> {{ collecte.dateFin|date('d/m/Y') }}
+                                </p>
+
+                                <p><i class="bi bi-geo-alt-fill text-danger"></i>
+                                    <strong>Lieu :</strong> {{ collecte.lieu.nomLieu }}
+                                </p>
+
+                                <p><i class="bi bi-map text-danger"></i>
+                                    <strong>Adresse :</strong> {{ collecte.lieu.adresse }}
+                                </p>
+
+                                <p><i class="bi bi-buildings text-danger"></i>
+                                    <strong>Ville :</strong> {{ collecte.lieu.ville }}
+                                </p>
+
+                                <!-- Bouton détails centré -->
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a href="{{ path('collect_By_Id', { id: collecte.id }) }}" 
+                                       class="btn btn-detail shadow-sm">
+                                        <i class="bi bi-info-circle"></i> Détails
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+/* Formulaire */
+.filter-box {
+    border-radius: 18px;
+    background: #ffffff;
+}
+
+/* Cartes */
+.collect-card {
+    border-radius: 20px;
+    padding: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.collect-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Bouton détails */
+.btn-detail {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 22px;
+    border-radius: 30px;
+    transition: background 0.3s ease;
+}
+
+.btn-detail:hover {
+    background-color: #b52a37;
+    color: #fff;
+}
+
+/* Swiper Controls */
+.swiper-button-prev, .swiper-button-next {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Inputs améliorés */
+.custom-select, 
+.form-control {
+    border-radius: 10px;
+}
