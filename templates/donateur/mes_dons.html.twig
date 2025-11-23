@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="{{ asset('theme/css/dons-table.css') }}">
+
+<div class="dons-container">
+    <div class="dons-header">
+        <span></span> Mes Dons
+    </div>
+
+    {% if dons is empty %}
+        <div class="dons-empty">Aucun don enregistré</div>
+    {% else %}
+        <table class="dons-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Quantité</th>
+                    <th>Type</th>
+                    <th>Apte</th>
+                    <th>Commentaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for don in dons %}
+                    <tr>
+                        <td>{{ don.datedon|date('d/m/Y') }}</td>
+                        <td>{{ don.quantite }}</td>
+                        <td>{{ don.typeDon }}</td>
+                        <td>{{ don.apte ? 'true' : 'false' }}</td>
+                        <td>{{ don.commentaire }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+<script src="{{ asset('theme/js/dons-table.js') }}"></script>

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Don;
+use App\Entity\Donateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,6 +17,13 @@ class DonRepository extends ServiceEntityRepository
         parent::__construct($registry, Don::class);
     }
 
+public function findDonByDonateur(Donateur $donateur){
+    return$this->createQueryBuilder('d')
+    ->andWhere('d.donateurId = :donateur')
+    ->setParameter('donateur',$donateur)
+    ->getQuery()
+    ->getResult();
+}
 //    /**
 //     * @return Don[] Returns an array of Don objects
 //     */

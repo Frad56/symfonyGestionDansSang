@@ -1,0 +1,115 @@
+/* Container */
+.dons-container {
+    background: #fff5f5;
+    border-radius: 10px;
+    border: 1px solid #ffcccc;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+/* Header */
+.dons-header {
+    background: #c61010e3;
+    color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Table */
+.dons-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dons-table th,
+.dons-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.95rem;
+    color: #333333; /* Texte principal */
+}
+
+.dons-table thead {
+    background: #ffe6e6;
+}
+
+.dons-table th {
+    color: #b30000;
+}
+
+.dons-table tbody tr:nth-child(even) {
+    background: #fff0f0;
+}
+
+.dons-table tbody tr:hover {
+    background: #ffd6d6;
+    transform: translateX(2px);
+}
+
+/* Badge "Apte" */
+.apte-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    color: white;
+}
+
+.apte-badge.true {
+    background-color: #28a745;
+}
+
+.apte-badge.false {
+    background-color: #c61010ab;
+}
+
+/* Message vide */
+.dons-empty {
+    padding: 40px 20px;
+    text-align: center;
+    color: #b30000;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dons-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .dons-table th,
+    .dons-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+/* Wrapper pour centrer la carte */
+.page-wrapper {
+    display: flex;
+    justify-content: center; /* Centrage horizontal */
+    align-items: center;     /* Centrage vertical */
+    min-height: 100vh;       /* Hauteur pleine fenêtre */
+    background-color: #fff0f0; /* Fond doux */
+    padding: 20px;
+}
+
+/* Optionnel : ajouter un effet "carte" */
+.dons-container {
+    background: #fff5f5;
+    border-radius: 15px;
+    border: 1px solid #ffcccc;
+    max-width: 1490px;       /* Largeur max */
+    width: 100%;            /* S'adapte à l'écran */
+    box-shadow: 0 8px 20px rgba(9, 8, 8, 0.2); /* Ombre douce */
+    padding: 20px;
+    overflow: hidden;
+    margin: 0;              /* Supprime les marges qui décalent */
+}
+

@@ -9,24 +9,27 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class RendezVousType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateHeureDebut')
-            ->add('dateheureFin')
-            ->add('statut')
-            ->add('donateur', EntityType::class, [
-                'class' => Donateur::class,
-                'choice_label' => 'id',
+            ->add('dateHeureDebut', DateTimeType::class, [
+                'label' => 'Date et heure de début',
+                'widget' => 'single_text',
+                'html5' => true,
             ])
-            ->add('collecte', EntityType::class, [
-                'class' => Collecte::class,
-                'choice_label' => 'id',
+            ->add('dateheureFin', DateTimeType::class, [
+                'label' => 'Date et heure de fin',
+                'widget' => 'single_text',
+                'html5' => true,
             ])
-        ;
+            ->add('statut', HiddenType::class, [ 
+                'data' => 'Confirmé'
+            ]) ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -5,8 +5,38 @@
 <form action="{{ path('app_logout') }}" method ="post">
         <button type="submit" href="">LogOut</button>
 </form>
-<h2>Mes Rendez-Vous</h2>
 
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+<div style="border: 1px solid #ccc; padding: 15px; margin: 15px 0; border-radius: 5px;">
+    <h3>📊 Votre Éligibilité au Don de Sang</h3>
+    
+    {% if eligibilite.eligible %}
+        <div style="color: green; font-weight: bold;">
+            ✅ {{ eligibilite.message }}
+        </div>
+        <p><strong>Dernier don :</strong> 
+            {% if user.derniereDateDon %}
+                {{ user.derniereDateDon|date('d/m/Y') }}
+            {% else %}
+                Jamais
+            {% endif %}
+        </p>
+    {% else %}
+        <div style="color: red; font-weight: bold;">
+            ❌ {{ eligibilite.message }}
+        </div>
+        <p><strong>Dernier don :</strong> {{ user.derniereDateDon|date('d/m/Y') }}</p>
+        <p><strong>Prochaine date possible :</strong> {{ eligibilite.prochaineDate|date('d/m/Y') }}</p>
+        <p><strong>Jours restants :</strong> {{ eligibilite.joursRestants }} jour(s)</p>
+    {% endif %}
+</div>
+<h2>Mes Rendez-Vous</h2>
 {% if ListRendezVous is empty %}
     <p>Aucun rendez-vous trouvé.</p>
 {% else %}
@@ -20,6 +50,7 @@
             </tr>
         </thead>
         <tbody>
+      
             {% for rdv in ListRendezVous %}
                 <tr>
                         <td>Date Rendez Vous {{ rdv.dateHeureDebut ? rdv.dateHeureDebut|date('d/m/Y H:i') : '' }}</td>
@@ -38,6 +69,9 @@
                     </td>                       
                 </tr>
             {% endfor %}
+
+              {# Section Éligibilité #}
+
         </tbody>
     </table>
 {% endif %}

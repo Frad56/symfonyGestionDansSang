@@ -93,6 +93,14 @@ class Collecte
         return $this;
     }
 
+    public function diminuerCapacite():void{
+        if($this->capaciteMaximale > 0){
+            $this->capaciteMaximale--;
+        }
+    }
+    public function YaDePlace():bool{
+        return $this->capaciteMaximale >0;
+    }
     public function getCapaciteMaximale(): ?int
     {
         return $this->capaciteMaximale;
