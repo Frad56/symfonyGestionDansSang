@@ -1,23 +1,92 @@
+{% block stylesheets %}
+<style>
+/* ======= CONTAINER DE DÉTAILS ======= */
+.details-container {
+    background: #fff;
+    padding: 30px 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto; /* centre horizontalement dans la page */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.details-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* ======= TEXTE ======= */
+.card-text {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    padding-left: 10px;
+    border-left: 4px solid #dc3545;
+}
+
+/* ======= BOUTON RENDEZ-VOUS ======= */
+.card-btn {
+    display: inline-block;
+    background-color: #dc3545;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+.card-btn:hover {
+    background-color: #b52a37;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(181,42,55,0.4);
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+    .details-container {
+        padding: 25px;
+        margin: 20px auto;
+    }
+
+    .card-btn {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% block body %}
+<div class="details-container">
+    <p class="card-text">Date début : {{ collectById.dateDebut|date('d/m/Y') }}</p>
+    <p class="card-text">Date fin : {{ collectById.dateFin|date('d/m/Y') }}</p>
+    <p class="card-text">Nom lieu : {{ collectById.lieu.nomLieu }}</p> 
+    <p class="card-text">Adresse : {{ collectById.lieu.adresse }}</p>
+    <p class="card-text">Capacite Maximale : {{ collectById.capaciteMaximale }}</p>
+    <p class="card-text">Statut : {{ collectById.statut }}</p> 
+    <p class="card-text">Ville : {{ collectById.lieu.ville }}</p> 
 
-<p class="card-text">Date début : {{ collectById.dateDebut|date('d/m/Y') }}</p>
-<p class="card-text">Date fin : {{ collectById.dateFin|date('d/m/Y') }}</p>
-
-<p class="card-text">Nom lieu : {{ collectById.lieu.nomLieu }}</p> 
-
-<p class="card-text">Adresse : {{ collectById.lieu.adresse }}</p>
-
-<p class="card-text">Capacite Maximale : {{ collectById.capaciteMaximale }}</p>
-
-<p class="card-text">Statut : {{ collectById.statut }}</p> 
-
-<p class="card-text">Ville : {{ collectById.lieu.ville }}</p> 
-
-<p class="card-text">Adresse : {{ collectById.lieu.adresse }}</p>
-
-
- <button class="card-btn" onclick="window.location.href='{{ path('app_login') }}'">
-                                       Rendez Vous
-                                    </button>
-
+    <button class="card-btn" onclick="window.location.href='{{ path('app_login') }}'">
+        Rendez Vous
+    </button>
+</div>
 {% endblock %}
